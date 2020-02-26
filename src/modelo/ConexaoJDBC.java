@@ -17,6 +17,6 @@ public class ConexaoJDBC {
 			System.out.println(e.getMessage());
 		}
 		
-		//Connection conn = ConnectionFactory;getConnection();
+		//Connection conn = ConnectionFactory.getConnection();
 	}
 }

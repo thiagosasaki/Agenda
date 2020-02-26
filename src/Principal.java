@@ -47,8 +47,6 @@ public class Principal {
 		System.out.println("Contato " + C2.toString());
 		System.out.println("Telefone: " + C2.getTelefone());
 		System.out.println("Grupo " + C2.getGrupo().toString());
-		
-		//teste
 	
 	}
 }
