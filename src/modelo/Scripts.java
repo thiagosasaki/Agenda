@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class Scripts {
 	
-	public void insertGrupoST(Connection conexao, int codigo, String nome, String descricao) { //Insert Statement
+	public void insertGrupoST(Connection conexao, int codigo, String nome, String descricao) {
 		try {
 			String sql = "INSERT INTO grupo(codigo, nome, descricao) " +
 						"VALUES(" + codigo + ",'" + nome + "','" + descricao + "')";
@@ -20,7 +20,7 @@ public class Scripts {
 		}
 	}
 	
-	public void insertGrupoPST(Connection conexao, int codigo, String nome, String descricao) { //Insert PreparedStatement
+	public void insertGrupoPST(Connection conexao, int codigo, String nome, String descricao) {
 		try {
 			String sql = "INSERT INTO grupo(codigo, nome, descricao) VALUES(?, ?, ?)";
 			PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -36,7 +36,7 @@ public class Scripts {
 		}
 	}
 	
-	public void updateGrupo(Connection conexao, int codigo, String newNome, String newDescricao) { //Update PreparedStatement
+	public void updateGrupo(Connection conexao, int codigo, String newNome, String newDescricao) {
 		try {
 			String sql = "UPDATE grupo set nome = ?, descricao = ?";
 			PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -51,7 +51,7 @@ public class Scripts {
 		}
 	}
 	
-	public void deleteGrupo(Connection conexao, int codigo) { //Delete PreparedStatement
+	public void deleteGrupo(Connection conexao, int codigo) {
 		try {
 			String sql = "DELETE FROM grupo WHERE codigo = ?";
 			PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class Scripts {
 		}
 	}
 	
-	public void insertContato(Connection conexao, int codigo, String nome, String telefone, Grupo grupo) { //Insert PreparedStatement
+	public void insertContato(Connection conexao, int codigo, String nome, String telefone, Grupo grupo) {
 		try {
 			String sql = "INSERT INTO contato(codigo, nome, telefone, grupo_codigo) VALUES(?, ?, ?, ?)";
 			PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class Scripts {
 		}
 	}
 	
-	public void updateContato(Connection conexao, int Codigo, String newNome, String newTelefone, Grupo newGrupo) { //Update PreparedStatement
+	public void updateContato(Connection conexao, int Codigo, String newNome, String newTelefone, Grupo newGrupo) {
 		try {
 			String sql = "UPDATE contato set nome = ?, telefone = ?, grupo = ?";
 			PreparedStatement pstm = conexao.prepareStatement(sql);
@@ -98,7 +98,7 @@ public class Scripts {
 		}
 	}
 	
-	public void deleteContato(Connection conexao, int codigo) { //Delete PreparedStatement
+	public void deleteContato(Connection conexao, int codigo) {
 		try {
 			String sql = "DELETE FROM contato WHERE codigo = ?";
 			PreparedStatement pstm = conexao.prepareStatement(sql);
