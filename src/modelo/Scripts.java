@@ -2,9 +2,59 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Scripts {
+	
+	public void selectGrupo(Connection conexao, Grupo grupo) {
+		Grupo grupoRetorno = null;
+		try{
+			String sql = "SELECT codigo, nome, descricao FROM grupo WHERE codigo = ?";
+			PreparedStatement pstm = conexao.prepareStatement(sql);
+			pstm.setInt(1, grupo.getCodigo());
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				grupoRetorno = new Grupo(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+			System.out.println("Grupo " + grupoRetorno);
+			rs.close();
+			pstm.close();
+			conexao.close();
+		}catch (Exception e){
+			System.out.println("Erro: " + e.getMessage());
+		}
+	}
+	
+	public void selectGrupos (Connection conexao){
+		List<Grupo>	grupos = new ArrayList<Grupo>();
+		try {
+			String sql = "SELECT codigo, nome, descricao FROM grupo";
+			PreparedStatement pstm = conexao.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				Grupo grupo = new Grupo(rs.getInt(1), rs.getString(2), rs.getString(3));
+				grupos.add(grupo);
+			}
+			rs.close();
+			pstm.close();
+			conexao.close();
+		}catch (Exception e){
+			System.out.println("Erro: " + e.getMessage());
+		}
+		
+		System.out.println("--- LISTA DE GRUPOS ---\n");
+		for(Grupo grupo : grupos) { //opção 1 
+			System.out.println("Grupo " + grupo);
+		}
+		
+		/*for(int i = 0; i < grupos.size(); i++){ //opção 2
+			Grupo grupo = grupos.get(i);
+			System.out.println("Grupo " + grupo);
+		}*/
+	}
 	
 	public void insertGrupoST(Connection conexao, int codigo, String nome, String descricao) {
 		try {
@@ -30,7 +80,7 @@ public class Scripts {
 			pstm.execute();
 			pstm.close();
 			conexao.close();
-			System.out.println("Dados inseridos!\n");
+			System.out.println("Grupo inserido com sucesso!\n");
 		} catch (Exception e) {
 			System.out.println("Erro " + e.getMessage());
 		}
@@ -45,7 +95,7 @@ public class Scripts {
 			pstm.execute();
 			pstm.close();
 			conexao.close();
-			System.out.println("Dados atualizados com sucesso!");
+			System.out.println("Grupo atualizado com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro " + e.getMessage());
 		}
@@ -59,7 +109,7 @@ public class Scripts {
 			pstm.execute();
 			pstm.close();
 			conexao.close();
-			System.out.println("Dados excluídos com sucesso!");
+			System.out.println("Grupo excluído com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro " + e.getMessage());
 		}
@@ -76,7 +126,7 @@ public class Scripts {
 			pstm.execute();
 			pstm.close();
 			conexao.close();
-			System.out.println("Dados inseridos com sucesso!");
+			System.out.println("Contato inserido com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro " + e.getMessage());
 		}
@@ -92,7 +142,7 @@ public class Scripts {
 			pstm.execute();
 			pstm.close();
 			conexao.close();
-			System.out.println("Dados atualizados com sucesso!");
+			System.out.println("Contato atualizado com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro " + e.getMessage());
 		}
@@ -106,7 +156,7 @@ public class Scripts {
 			pstm.execute();
 			pstm.close();
 			conexao.close();
-			System.out.println("Dados excluídos com sucesso!");
+			System.out.println("Contato excluído com sucesso!");
 		} catch (Exception e) {
 			System.out.println("Erro " + e.getMessage());
 		}
